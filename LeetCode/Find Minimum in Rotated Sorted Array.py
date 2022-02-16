@@ -41,7 +41,6 @@ class Solution:
         left, right = 0, len(nums) - 1
         while left <= right:
             mid = left + (right - left) // 2
-            print(left, mid, right)
             if nums[left] <= nums[right]:
                 return nums[left]
             elif nums[mid] >= nums[left]:
