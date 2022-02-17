@@ -34,7 +34,6 @@ class Solution:
         left, right = 0, len(nums) - 1
         while left <= right:
             mid = left + (right - left) // 2
-            print(left, mid, right)
             if ((mid == 0 or nums[mid - 1] <= nums[mid]) and
                 (mid == len(nums)-1 or nums[mid + 1] <= nums[mid])):
                 return mid
