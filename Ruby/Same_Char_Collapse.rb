@@ -28,11 +28,6 @@ def same_char_collapse(str)
   return str
 end
 
-def uniq?(str)
-  return str.split.uniq.length == str.length
-end
-
-
 puts same_char_collapse("zzzxaaxy")   #=> "zy"
 # because zzzxaaxy -> zxaaxy -> zxxy -> zy
 
