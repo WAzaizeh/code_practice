@@ -11,26 +11,37 @@
 
 
 def my_rotate!(array, amt)
-
+    if amt > 0
+        amt.times do
+            tmp = array.shift
+            array << tmp
+        end
+    else
+        (amt * -1).times do
+            tmp = array.pop
+            array.unshift(tmp)
+        end
+    end
+    array
 end
 
 
 array_1 = ["a", "b", "c", "d"]
-p array_1.object_id                 # => 70354216023780
+p array_1.object_id                       # => 70354216023780
 result_1 = my_rotate!(array_1, 2)
-p result_1                          # => ["c", "d", "a", "b"]
-p result_1.object_id                # => 70354216023780
+p result_1                                # => ["c", "d", "a", "b"]
+p result_1.object_id == array_1.object_id # => 70354216023780
 
 
 array_2 = ["NOMAD", "SOHO", "TRIBECA"]
-p array_2.object_id                 # => 70354216019660
+p array_2.object_id                       # => 70354216019660
 result_2 = my_rotate!(array_2, 1)
-p result_2                          # => ["SOHO", "TRIBECA", "NOMAD"]
-p result_2.object_id                # => 70354216019660
+p result_2                                # => ["SOHO", "TRIBECA", "NOMAD"]
+p result_2.object_id == array_2.object_id # => 70354216019660
 
 
 array_3 = ["a", "b", "c", "d"]
-p array_3.object_id                 # => 70354216016500
+p array_3.object_id                       # => 70354216016500
 result_3 = my_rotate!(array_3, -3)
-p result_3                          # => ["b", "c", "d", "a"]
-p result_3.object_id                # => 70354216016500
+p result_3                                # => ["b", "c", "d", "a"]
+p result_3.object_id == array_3.object_id # => 70354216016500
