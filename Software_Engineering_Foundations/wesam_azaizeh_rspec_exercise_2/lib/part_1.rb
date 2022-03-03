@@ -17,7 +17,7 @@ end
 
 def replace_vowels(word)
     vowels = 'aeiou'
-    return word.each_char.with_index {|c, i| vowels.include?(c) ? word[i] = '*' : nil}
+    return word.each_char.with_index {|c, i| vowels.include?(c.downcase) ? word[i] = '*' : nil}
 end
 
 def power_of_two?(num)
