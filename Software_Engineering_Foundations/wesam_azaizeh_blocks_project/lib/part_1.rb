@@ -20,5 +20,3 @@ end
 def aba_array(arr)
     arr.map {|w| aba_translate(w)}
 end
-
-p aba_array(["cat", "dog", "butterfly"])
