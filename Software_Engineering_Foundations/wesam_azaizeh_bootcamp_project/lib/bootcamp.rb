@@ -42,7 +42,31 @@ class Bootcamp
         @students.include?(name)
     end
 
+    ## PART 2 ###
+
+    def student_to_teacher_ratio
+        (@students.size / @teachers.size).floor
+    end
+
+    def add_grade(student, grade)
+        if enrolled?(student) 
+            @grades[student] << grade
+            return true
+        else
+            false
+        end
+    end
+
+    def num_grades(student)
+        enrolled?(student) ? @grades[student].size : false
+    end
+
+    def average_grade(student)
+        enrolled?(student) && @grades[student].size > 0 ? (@grades[student].sum / @grades[student].size).floor : nil
+    end
 end
 
 bootcamp = Bootcamp.new("Map Academy", "Anyone can be a cartographer.", 6)
-p bootcamp
+5.times {bootcamp.enroll('student')}
+3.times {bootcamp.hire('teacher')}
+p bootcamp.add_grade('studet', 5)
