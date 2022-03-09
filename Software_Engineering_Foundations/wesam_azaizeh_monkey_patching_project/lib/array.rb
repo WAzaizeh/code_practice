@@ -1,4 +1,7 @@
 # Monkey-Patch Ruby's existing Array class to add your own custom methods
+
+require 'set'
+
 class Array
     ## PART 1 ##
 
@@ -22,6 +25,32 @@ class Array
         self.map {|c| count[c] += 1}
         count
     end
-end
 
-p ["a", "b", "a", "b", "b", "c"].counts
+    ## PART 2 ##
+
+    def my_count(a)
+        count = 0
+        self.map {|n| count += 1 if n == a}
+        count
+    end 
+
+    def my_index(a)
+        return nil if !self.include?(a)
+        self.find_index {|n, i| n == a }
+    end
+
+    def my_uniq
+        self.to_set.to_a
+    end
+
+    def my_transpose
+        arr = Array.new( self.size) { Array.new( self.size) }
+        self.each_with_index do |row, row_index|
+            self.each_with_index do |column, col_index|
+                arr[row_index][col_index] = self[col_index][row_index]
+            end
+        end 
+        arr
+    end
+
+end
