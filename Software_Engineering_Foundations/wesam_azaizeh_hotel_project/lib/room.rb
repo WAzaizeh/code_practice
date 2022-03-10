@@ -16,7 +16,7 @@ class Room
     end
 
     def full?
-        @occupants.size < @capacity ? false : true
+        !(@occupants.size < @capacity)
     end
 
     def available_space
