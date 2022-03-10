@@ -1,0 +1,48 @@
+class Hangman
+  DICTIONARY = ["cat", "dog", "bootcamp", "pizza"]
+
+  ## PART 1 ##
+
+  def self.random_word
+    DICTIONARY.sample
+  end
+
+  def initialize
+    @secret_word = Hangman.random_word
+    @guess_word = Array.new(@secret_word.size ,'_')
+    @attempted_chars = []
+    @remaining_incorrect_guesses = 5
+  end
+
+  
+
+  def guess_word
+    @guess_word
+  end
+
+  def attempted_chars
+    @attempted_chars
+  end
+
+  def remaining_incorrect_guesses
+    @remaining_incorrect_guesses
+  end
+
+  def already_attempted?(c)
+    attempted_chars.include?(c)
+  end
+
+  def get_matching_indices(c)
+    p @secret_word
+    @secret_word.include?(c) ? (0 .. @secret_word.length).find_all {|i| @secret_word[i] == c} : []
+  end
+
+  def fill_indices(c ,arr)
+    arr.each {|i| @guess_word[i] = c}
+  end
+
+
+
+end
+
+p Hangman.random_word
