@@ -13,5 +13,5 @@ class Employee
     def pay(num)
         @earnings += num
     end
-
+    
 end
