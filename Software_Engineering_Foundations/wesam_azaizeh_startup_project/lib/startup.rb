@@ -1,4 +1,4 @@
-require "employee"
+require_relative "employee"
 
 class Startup
 
@@ -17,8 +17,8 @@ class Startup
         @salaries.has_key?(title)
     end
 
-    def >(startup_2)
-        self.funding > startup_2.funding
+    def >(startup2)
+        self.funding > startup2.funding
     end
 
     def hire(employee_name, title)
@@ -41,6 +41,24 @@ class Startup
 
     def payday
         @employees.each {|e| self.pay_employee(e)}
+    end
+
+    def average_salary
+        sum = 0
+        @employees.each {|e| sum += @salaries[ e.title]}
+        sum / employees.size
+    end
+
+    def close
+        @employees = []
+        @funding = 0
+    end
+
+    def acquire(startup2)
+        @funding += startup2.funding
+        startup2.salaries.map {|salary| @salaries[salary[0]] = salary[1] if !@salaries.has_key?( salary[0])}
+        startup2.employees.map {|employee| @employees << employee}
+        startup2.close
     end
 
 end
