@@ -15,8 +15,7 @@ class Mastermind
 
     def ask_user_for_guess
         puts 'Enter a code'
-        guess = gets.chomp
-        guess_code = Code.from_string(guess)
+        guess_code = Code.from_string(gets.chomp)
         print_matches(guess_code)
         @secret_code.num_exact_matches(guess_code) == guess.size
     end

@@ -49,12 +49,12 @@ class Code
       to_match = @pegs.values_at(*include_idx)
       c = 0
       include_idx.map do |i|
-         if to_match.include?(p code_2.pegs[i])
+         if to_match.include?(code_2.pegs[i])
           to_match.delete_at( to_match.index(code_2.pegs[i]))
           c += 1
          end
         end
-        c
+        return c
     end
   end
 
