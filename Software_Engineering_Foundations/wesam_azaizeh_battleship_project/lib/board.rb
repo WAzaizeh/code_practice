@@ -23,4 +23,44 @@ class Board
         @grid.flatten.count(:S)
     end
 
+    ## PART 2 ##
+
+    def attack(pos)
+        if self[pos] == :S
+            self[pos] = :H
+            puts 'you sunk my battleship!'
+            return true
+        else
+            self[pos] = :X
+            return false
+        end
+    end
+
+    def place_random_ships
+        while self.num_ships < (@size / 4) do
+            row, col = rand(@grid.size), rand(@grid.size)
+            self[[row,col]] = :S
+        end
+    end
+            
+    def hidden_ships_grid
+        @grid.map {|row| row.map{ |e| e == :S ? :N : e}}
+    end
+
+    def self.print_grid(grid)
+        grid.map{|row| puts row.join(' ')}
+    end
+
+    def cheat
+        Board.print_grid @grid
+    end
+
+    def print
+        Board.print_grid self.hidden_ships_grid
+    end
+
 end
+
+board = Board.new(6)
+board.place_random_ships
+p board.instance_variable_get(:@grid).flatten.count(:S)
