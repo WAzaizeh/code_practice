@@ -36,8 +36,8 @@ class Board
         end
     end
 
-    def place_random_ships
-        while self.num_ships < (@size / 4) do
+    def place_random_ships( num = size/4)
+        while self.num_ships < num do
             row, col = rand(@grid.size), rand(@grid.size)
             self[[row,col]] = :S
         end
@@ -60,7 +60,3 @@ class Board
     end
 
 end
-
-board = Board.new(6)
-board.place_random_ships
-p board.instance_variable_get(:@grid).flatten.count(:S)
